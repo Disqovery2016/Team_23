@@ -84,6 +84,62 @@
 		</div><!--/header-bottom-->
 	</header><!--/header-->
 	
+	<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>E</span>thnic</h1>
+									<h2></h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="images/home/home1.jpg" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>thnic</h1>
+									<h2></h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="images/home/home2.jpg" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+							
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>thnic</h1>
+									<h2></h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="images/home/home3.jpg" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+							
+						</div>
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+	
 	<section>
 		<div class="container">
 			<div class="row">
@@ -103,7 +159,7 @@
 								<div id="sportswear" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><p onclick="tshirtshow()">T - Shirts </a></li>
+											<li><a href="itemselect.php">T - Shirts </a></li>
 											<li><a href="#">Shirts</a></li>
 											<li><a href="#">Pants </a></li>
 											<li><a href="#">Jeans</a></li>
@@ -116,17 +172,18 @@
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Colours
+											Colour
 										</a>
 									</h4>
 								</div>
 								<div id="mens" class="panel-collapse collapse">
 									<div class="panel-body">
-											<select type="text" class="" id="query_color" placeholder="Select a color" >
-												<option value="red">Red</option>
-												<option value="Blue">Blue</option>
-												<option value="Black">Black</option>
-											</select>
+										<ul>
+											<li><a href="#">Bed Sheets</a></li>
+											<li><a href="#">Blankets</a></li>
+											<li><a href="#">Curtain</a></li>
+											<li><a href="#">Paints</a></li>
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -136,17 +193,17 @@
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Size
+											Accessories
 										</a>
 									</h4>
 								</div>
 								<div id="womens" class="panel-collapse collapse">
 									<div class="panel-body">
-											<select type="text" class="" id="query_size" placeholder="Select a color" >
-												<option value="s">S</option>
-												<option value="m">M</option>
-												<option value="l">L</option><option value="xl">XL</option>
-											</select>
+										<ul>
+											<li><a href="#">Mobile Covers</a></li>
+											<li><a href="#">Laptop</a></li>
+											<li><a href="#">Sunglass</a></li>
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -167,8 +224,11 @@
 					
 					</div>
 				</div>
-
+				
 				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Featured Items</h2>
+
 <?php
 
 	include 'db.php';
@@ -176,14 +236,13 @@
 	if($conn){
 		$sql = "SELECT * FROM commodity"; $retval=mysqli_query($conn, $sql); $items = "";
 		while($row = mysqli_fetch_assoc($retval)){
-			if($row["product_type"] == "tshirt"){
+			if($row["product_type"] != "product_type"){
 				
 				$last_id = $row["commid"]; $price = $row["price"];
 				$sql2 = "SELECT * FROM income WHERE design_id IN (SELECT designid FROM commodityartifact WHERE commid=$last_id)";
 				$retval2 = mysqli_query($conn,$sql2); $row2 = mysqli_fetch_array($retval2); 
 				$descrp = $row2["description"]; $designid2 = $row2["design_id"]; $imglink = "images/" . $designid2 . ".jpg";
 
-				echo "<div class=\"features_items\"><h2 class=\"title text-center\">Featured Items</h2>";
 				echo "<div class=\"col-sm-4\"><div class=\"product-image-wrapper\"><div class=\"single-products\"><div class=\"productinfo text-center\">";
 				echo "<img src=\"$imglink\" alt=\"\" style=\"height:60%; width:90%;\"/><h2>$price $</h2>";
 				echo "<p>$descrp</p>";
@@ -196,9 +255,12 @@
 			}
 		}
 	}else{
-		echo "conn error";
+		echo "connection error";
 	}
-?>
+
+?>						
+						
+					</div><!--features_items-->
 					
 				</div>
 			</div>
@@ -251,7 +313,7 @@
 		
 	</footer><!--/Footer-->
 
-		<div style="position:fixed; top:10%; left:20%; width:40%; height:80%; display:none; z-index:10;" id="itempop">
+		<div style="position:fixed; top:10%; left:20%; width:40%; height:80%; display:none; z-index:10" id="itempop">
 			<img src="" id="itempopimg" style="width:100%; height:100%;"/> 
 			<p id="addtocart" onclick="addtocart()" style="display:block; font-size:20px; cursor:pointer; background:#FE980F; text-align:center;">Order Now</p>
 			<p id="result1" style="display:none;"></p>
@@ -269,8 +331,7 @@
 
     	window.onload = function(){
     		init();
-    		document.getElementById("pricerange").style.display="block";
-    		//getitems();
+    		document.getElementById("pricerange").style.display="none";
     	}
 
     	function init(){
@@ -300,19 +361,6 @@
  				$('#result1').html(data);
    			});	
     	}
-
-    	/*function getitems(){
-    		var color = query_color[query_color.selectedIndex].value; var size = query_size[query_size.selectedIndex].value;
-			$.post("getitemdata.php", { c: 1, color: color, size: size},
-   			function(data) {
-   				var det = data.split("!");
-   				for(var i=0; i<det.length; i++){
-   					var tempitem = det[i].split("%");
-
-   				}
- 				$('#result1').html(data);
-   			});	    		
-    	}*/
     </script>
 </body>
 </html>
