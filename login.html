@@ -28,7 +28,7 @@
 <body>
 
 	<header id="header"><!--header-->
-		<div class="header-middle"><!--header-middle-->
+		<div class="header-middle">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4">
@@ -49,25 +49,17 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header-middle-->
+		</div>
 	</header>
 
+<div style="position:absolute; left:20%; top:120%;"> 
 <p style="font-size:20px;">LOG IN</p>
 <form method="post" action="login.php" autocomplete="off">
-<input type="text" name="email" required="required" class="create" placeholder="E-mail" style="; top:20%; left:30%; width:50%;" />
-<input type="password" name="password" required="required" class="create" placeholder="Password" style="; top:30%; left:30%; width:50%;" /><br><br>
+<input type="text" name="email" required="required" class="create" placeholder="E-mail" style="top:20%; left:30%; width:50%;" />
+<input type="password" name="password" required="required" class="create" placeholder="Password" style="top:30%; left:30%; width:50%;"/><br><br>
 <input type="submit" value="SUBMIT" class="submit1" style="font-size:18px; ; top:40%; left:47%;"/>
 </form>
-
-<p style="font-size:20px;">Sign Up</p>
-<form action="signup.php" method="post" autocomplete="off">
-<input type="text" placeholder="First name" name="firstname" required="required" class="create" style="; top:20%; left:30%; width:20%;" />
-<input type="text" placeholder="Last name" name="lastname" required="required" class="create" style="; top:20%; left:60%; width:20%;" />
-<input type="text" placeholder="E-mail" name="email" required="required" class="create" style="; top:30%; left:30%;" />
-<input type="password" placeholder="Password" name="password" required="required" class="create" style="; top:40%; left:30%;" />
-<input type="password" placeholder="Password confirm" required="required" name="passwordcnfrm" class="create" style="; top:50%; left:30%;" />
-<input type="submit" name="submit" value="Create" required="required" class="submit1" style="; top:60%; left:47%; font-size:18px;" />
-</form>
+</div>
 
 </body>
 </html>
