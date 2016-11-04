@@ -23,8 +23,8 @@ if(mysqli_num_rows($retval) > 0){
 	}
 if($i==1){
 	session_start();
-	$_SESSION["cname"]=$cname; $_SESSION["cemail"]=$cemail; $_SESSION["pid"]=$id; $_SESSION["cpassword"]=$cpassword; $_SESSION["caddress"]=$caddress; 
-	header("Location: user_home.php"); 
+	$_SESSION["cname"]=$cname; $_SESSION["cemail"]=$cemail; $_SESSION["cid"]=$id; $_SESSION["cpassword"]=$cpassword; $_SESSION["caddress"]=$caddress; 
+	header("Location: index.html"); 
 } 
 else{echo "Either emailid or password is incorrect. Go back and try again!" ; }
 
@@ -51,7 +51,7 @@ if($i==1){
 	session_start();
 	$_SESSION["aname"]=$cname; $_SESSION["aemail"]=$cemail; $_SESSION["aid"]=$id; $_SESSION["apassword"]=$cpassword; $_SESSION["aaddress"]=$caddress;
 	$_SESSION["areview"]=$areview; $_SESSION["arating"]=$arating; 
-	header("Location: artist_home.php"); 
+	header("Location: index.html"); 
 } 
 else{echo "Either emailid or password is incorrect. Go back and try again!" ; }
 

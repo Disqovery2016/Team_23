@@ -89,62 +89,6 @@
 		</div><!--/header-bottom-->
 	</header><!--/header-->
 	
-	<section id="slider"><!--slider-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-							<li data-target="#slider-carousel" data-slide-to="1"></li>
-							<li data-target="#slider-carousel" data-slide-to="2"></li>
-						</ol>
-
-						<div class="carousel-inner">
-							<div class="item active">
-								<div class="col-sm-6">
-									<h1><span>E</span>thnic</h1>
-									<h2></h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="images/home/home1.jpg" class="girl img-responsive" alt="" />
-								</div>
-							</div>
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>thnic</h1>
-									<h2></h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="images/home/home2.jpg" class="girl img-responsive" alt="" />
-								</div>
-							</div>
-							
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>thnic</h1>
-									<h2></h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="images/home/home3.jpg" class="girl img-responsive" alt="" />
-								</div>
-							</div>
-							
-						</div>
-
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section><!--/slider-->
-	
 	<section>
 		<div class="container">
 			<div class="row">
@@ -164,7 +108,7 @@
 								<div id="sportswear" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a onclick="itemselect.php">T - Shirts </a></li>
+											<li><p onclick="tshirtshow()">T - Shirts </a></li>
 											<li><a href="#">Shirts</a></li>
 											<li><a href="#">Pants </a></li>
 											<li><a href="#">Jeans</a></li>
@@ -177,18 +121,17 @@
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Colour
+											Colours
 										</a>
 									</h4>
 								</div>
 								<div id="mens" class="panel-collapse collapse">
 									<div class="panel-body">
-										<ul>
-											<li><a href="#">Bed Sheets</a></li>
-											<li><a href="#">Blankets</a></li>
-											<li><a href="#">Curtain</a></li>
-											<li><a href="#">Paints</a></li>
-										</ul>
+											<select type="text" class="" id="query_color" placeholder="Select a color" >
+												<option value="red">Red</option>
+												<option value="Blue">Blue</option>
+												<option value="Black">Black</option>
+											</select>
 									</div>
 								</div>
 							</div>
@@ -198,17 +141,17 @@
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Accessories
+											Size
 										</a>
 									</h4>
 								</div>
 								<div id="womens" class="panel-collapse collapse">
 									<div class="panel-body">
-										<ul>
-											<li><a href="#">Mobile Covers</a></li>
-											<li><a href="#">Laptop</a></li>
-											<li><a href="#">Sunglass</a></li>
-										</ul>
+											<select type="text" class="" id="query_color" placeholder="Select a color" >
+												<option value="s">S</option>
+												<option value="m">M</option>
+												<option value="l">L</option><option value="xl">XL</option>
+											</select>
 									</div>
 								</div>
 							</div>
@@ -240,7 +183,7 @@
 											<img src="" alt="" />
 											<h2></h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<p onclick="popupitem()" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</p>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
@@ -432,6 +375,12 @@
 		</div>
 		
 	</footer><!--/Footer-->
+
+		<div style="position:absolute; top:20%; left:20%; width:60%; height:60%; display:none;" id="itempop">
+			<img src="" id="itempopimg" style="width:100%; height:100%;"/> 
+			<p id="addtocart" onclick="addtocart()">Add To Cart</p>
+			<p id="result1" style="display:none;"></p>
+		</div>
 	
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -443,7 +392,8 @@
     <script type="text/javascript">
     	window.onload = function(){
     		init();
-    		document.getElementById("pricerange").style.display="none";
+    		document.getElementById("pricerange").style.display="block";
+    		getitems();
     	}
 
     	function init(){
@@ -460,6 +410,25 @@
               	document.getElementById("logname").style.display = "block"; document.getElementById("logname").innerHTML(data);            	
               }
           	})
+    	}
+
+    	function popupitem(imgid){
+    		document.getElementById("itempop").style.display("block");
+    		document.getElementById("itempopimg").src = imgid;
+    	}
+
+    	function itempop(itemid){
+			$.post("getuserdet.php", { itemid: itemid , c: 2 },
+   			function(data) {
+ 				$('#result1').html(data);
+   			});	
+    	}
+
+    	function getitems(){
+			$.post("getitemdata.php", { c: 1 },
+   			function(data) {
+ 				$('#result1').html(data);
+   			});	    		
     	}
     </script>
 </body>
