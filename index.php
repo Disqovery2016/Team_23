@@ -40,7 +40,8 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li id="acc"><a href="#"><i class="fa fa-user"></i> Account</a></li>
-								<li id="login"><a href="login.html"><i class="fa fa-lock"></i> Login / Signup</a></li>
+								<li id="login"><a href="signin.php"><i class="fa fa-lock"></i> Login</a></li>
+								<li id="register"><a href="signup.php"><i class="fa fa-lock"></i> Register</a></li>
 							</ul>
 						</div>
 					</div>
@@ -338,13 +339,11 @@
     		$.post("getuserdet.php", {c: 1},
             function(data){
               if(!data){
-              	document.getElementById("acc").style.display = "none"; document.getElementById("wish").style.display = "none";
-              	document.getElementById("checkout").style.display = "none"; document.getElementById("cart").style.display = "none";
-              	document.getElementById("login").style.display = "block"; document.getElementById("logname").style.display = "none";  
+              	document.getElementById("acc").style.display = "none"; document.getElementById("register").style.display = "block"; 
+              	document.getElementById("login").style.display = "block"; document.getElementById("logname").style.display = "none";
               }else{
-               	document.getElementById("acc").style.display = "block"; document.getElementById("wish").style.display = "block";
-              	document.getElementById("checkout").style.display = "block"; document.getElementById("cart").style.display = "block";
-              	document.getElementById("login").style.display = "none"; 
+               	document.getElementById("acc").style.display = "block";
+              	document.getElementById("login").style.display = "none";  document.getElementById("register").style.display = "none"; 
               	document.getElementById("logname").style.display = "block"; document.getElementById("logname").innerHTML(data);            	
               }
           	})

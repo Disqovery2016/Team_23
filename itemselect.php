@@ -273,17 +273,16 @@
     		//getitems();
     	}
 
+
     	function init(){
     		$.post("getuserdet.php", {c: 1},
             function(data){
               if(!data){
-              	document.getElementById("acc").style.display = "none"; document.getElementById("wish").style.display = "none";
-              	document.getElementById("checkout").style.display = "none"; document.getElementById("cart").style.display = "none";
-              	document.getElementById("login").style.display = "block"; document.getElementById("logname").style.display = "none";  
+              	document.getElementById("acc").style.display = "none"; document.getElementById("register").style.display = "block"; 
+              	document.getElementById("login").style.display = "block"; document.getElementById("logname").style.display = "none";
               }else{
-               	document.getElementById("acc").style.display = "block"; document.getElementById("wish").style.display = "block";
-              	document.getElementById("checkout").style.display = "block"; document.getElementById("cart").style.display = "block";
-              	document.getElementById("login").style.display = "none"; 
+               	document.getElementById("acc").style.display = "block";
+              	document.getElementById("login").style.display = "none";  document.getElementById("register").style.display = "none"; 
               	document.getElementById("logname").style.display = "block"; document.getElementById("logname").innerHTML(data);            	
               }
           	})

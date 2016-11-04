@@ -33,7 +33,7 @@
 						<form>
 							<input id="cemail" type="email" required="required" autocomplete="off" placeholder="Email Address" />
 							<input id="cpass" type="password" required = "required" autocomplete="off" placeholder="Password" />
-							<button onclick="login(1)" class="btn btn-default">Login</button> 
+							<p onclick="login(1)" class="btn btn-default">Login</p> 
 						</form>
 					</div><!--/login form-->
 				</div>
@@ -46,7 +46,7 @@
 						<form>
 							<input id="aemail" type="email" required="required" autocomplete="off" placeholder="Email Address"/>
 							<input id="apass" type="password" required="required" autocomplete="off" placeholder="Password"/>
-							<button onclick="login(2)" class="btn btn-default">Login</button>
+							<p onclick="login(2)" class="btn btn-default">Login</p>
 						</form>
 					</div><!--/sign up form-->
 				</div>
@@ -65,14 +65,14 @@
     <script type="text/javascript">
     	function login(who){
     		if(who == 1){
-    			var cemail = document.getElementById("cemail"); var cpass = document.getElementById("cpass");
-    			$.post("login.php", {c: 1, cemail: cemail, cpass: cpass},
+    			var cemail = document.getElementById("cemail").value; var cpass = document.getElementById("cpass").value;
+    			$.post("templogin.php", {c: 1, cemail: cemail, cpass: cpass},
     				function(data){
     					$('#result1').html(data);
     			})
     		}else{
-    			var cemail = document.getElementById("cemail"); var cpass = document.getElementById("cpass");
-    			$.post("login.php", {c: 2, aemail: aemail, apass: apass},
+    			var cemail = document.getElementById("cemail").value; var cpass = document.getElementById("cpass").value;
+    			$.post("templogin.php", {c: 2, aemail: aemail, apass: apass},
     				function(data){
     					$('#result1').html(data);
     			})    			

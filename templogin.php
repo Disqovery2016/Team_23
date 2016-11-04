@@ -8,6 +8,12 @@ if($c == 1){
 if($c == 2){
 	login_artist();
 }
+if($c == 3){
+	signup_cust();
+}
+if($c == 4){
+	signup_artist();
+}
 
 
 function login_cust(){
@@ -18,20 +24,18 @@ function login_cust(){
 	if(mysqli_connect_errno()){
 		die("Connection Failed".mysqli_connect_error());
 	}else{
-		if ($stmt = $mysqli->prepare("SELECT * FROM `customers` WHERE emailid=? AND password=?")) {
+		if ($stmt = $mysqli->prepare("SELECT cid FROM `customers` WHERE emailid=? AND password=?")) {
 			$stmt->bind_param("ss", $cemail , $cpass);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			while ($row = $result->fetch_assoc()) {
-				$cid = $row["cid"]; $ok = 1; break;
-			}
-			//$stmt->bind_result($uid);
-			//$stmt->fetch();
-			//$stmt->store_result();
-			if($ok == 0){
-				echo "No Such User Found";
-			}else{
+			if($stmt->execute()){
+				$result = $stmt->get_result();
+				$stmt->bind_result($cid);
+				$stmt->fetch();
+				$stmt->store_result();
+
 				echo "Login Successfull"; $_SESSION["cid"] = $cid;
+				header("Location: index.php"); 
+			}else{
+				echo "No Such User Found";
 			}
 			$stmt->close();
 		}
@@ -50,24 +54,88 @@ function login_artist(){
 	}else{
 		if ($stmt = $mysqli->prepare("SELECT * FROM `artists` WHERE aemail=? AND apassword=?")) {
 			$stmt->bind_param("ss", $aemail , $apassword);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			while ($row = $result->fetch_assoc()) {
-				$aid = $row["aid"]; $ok = 1; break;
-			}
-			//$stmt->bind_result($uid);
-			//$stmt->fetch();
-			//$stmt->store_result();
-			if($ok == 0){
-				echo "No Such User Found";
+			if($stmt->execute()){
+				$result = $stmt->get_result();
+				$stmt->bind_result($cid);
+				$stmt->fetch();
+				$stmt->store_result();
+
+				echo "Login Successfull"; $_SESSION["aid"] = $aid;
+				header("Location: index.php"); 
 			}else{
-				echo "Login Successfull"; $_SESSION["aid"] == $aid;
+				echo "No Such User Found";
 			}
 			$stmt->close();
 		}
   		$mysqli->close();
 	}
 
+}
+
+function signup_cust(){
+	$cemail = $_REQUEST["cemail"]; $cpass = $_REQUEST["cpass"]; $ok = 0;
+	$cname = $_REQUEST["cname"]; $caddr = $_REQUEST["caddr"]; $ccontact = $_REQUEST["ccontact"];
+	$cpass = hash('sha512',$cpass);
+
+	include 'db.php';
+	$mysqli = new mysqli($host, $user, $pass, $database);
+	if(mysqli_connect_errno()){
+		die("Connection Failed".mysqli_connect_error());
+	}else{
+		if ($stmt = $mysqli->prepare("SELECT cid FROM `customers` WHERE emailid=? AND password=?")) {
+			$stmt->bind_param("ss", $cemail , $cpass);
+			if(!$stmt->execute()){
+				if ($stmt2 = $mysqli->prepare("INSERT INTO `customers` VALUES (?,?,?,?,?)")) {
+					$stmt2->bind_param("sssss", $cemail, $cpass, $cpass , $caddr, $ccontact);
+					if($stmt2->execute()){
+						echo "Registered Successfully. Please Login";
+					}else{
+						echo "Error Entering Details";
+					}
+					$stmt2->close();
+				}else{
+					echo "Error Preparing.";
+				}
+			}else{
+				echo "User Already Registered";
+			}
+			$stmt->close();
+		}
+  		$mysqli->close();
+	}	
+}
+
+function signup_artist(){
+	$aemail = $_REQUEST["aemail"]; $apass = $_REQUEST["apass"]; $ok = 0;
+	$aname = $_REQUEST["aname"]; $aaddr = $_REQUEST["aaddr"]; $acontact = $_REQUEST["acontact"];
+	$apass = hash('sha512',$apass);
+
+	include 'db.php';
+	$mysqli = new mysqli($host, $user, $pass, $database);
+	if(mysqli_connect_errno()){
+		die("Connection Failed".mysqli_connect_error());
+	}else{
+		if ($stmt = $mysqli->prepare("SELECT aid FROM `artists` WHERE aemail=? AND apassword=?")) {
+			$stmt->bind_param("ss", $cemail , $cpass);
+			if(!$stmt->execute()){
+				if ($stmt2 = $mysqli->prepare("INSERT INTO `artists` VALUES (?,?,?,?,?)")) {
+					$stmt2->bind_param("sssss", $aemail, $apass, $aname , $aaddr, $acontact);
+					if($stmt2->execute()){
+						echo "Registered Successfully. You Will Be Evaluated And Notified By Us.";
+					}else{
+						echo "Error Entering Details";
+					}
+					$stmt2->close();
+				}else{
+					echo "Error Preparing.";
+				}
+			}else{
+				echo "User Already Registered";
+			}
+			$stmt->close();
+		}
+  		$mysqli->close();
+	}	
 }
 
 ?>
