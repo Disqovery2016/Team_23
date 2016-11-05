@@ -5,5 +5,5 @@ myvalues <- read.csv("RuralInternetSubscribers.csv")
 high.order <- order(myvalues$RuralSubscribers, decreasing=TRUE)
 education.high <- myvalues[high.order,]
 #plotting the data
-barplot(myvalues$RuralSubscribers, names.arg=myvalues$State, horiz=TRUE, las=1, cex.names=0.5, border=NA)
+barplot(myvalues$RuralSubscribers, names.arg=myvalues$State, horiz=TRUE, las=2, cex.names=0.8, border=NA)
 summary(myvalues)
