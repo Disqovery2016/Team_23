@@ -40,7 +40,8 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li id="acc"><a href="#"><i class="fa fa-user"></i> Account</a></li>
-								<li id="login"><a href="login.html"><i class="fa fa-lock"></i> Login / Signup</a></li>
+								<li id="login"><a href="signin.php"><i class="fa fa-lock"></i> Login</a></li>
+								<li id="signup"><a href="signuo_artist.php"><i class="fa fa-lock"></i>Signup</a></li>
 							</ul>
 						</div>
 					</div>
@@ -253,9 +254,16 @@
 
 		<div style="position:fixed; top:10%; left:20%; width:40%; height:80%; display:none; z-index:10;" id="itempop">
 			<img src="" id="itempopimg" style="width:100%; height:100%;"/> 
-			<p id="addtocart" onclick="addtocart()" style="display:block; font-size:20px; cursor:pointer; background:#FE980F; text-align:center;">Order Now</p>
+			<p id="ordernow" onclick="ordernow()" style="display:block; font-size:20px; cursor:pointer; background:#FE980F; text-align:center;">Order Now</p>
 			<p id="result1" style="display:none;"></p>
 		</div>
+		<div style="position:fixed; top:10%; left:62%; width:30%; display:none; z-index:10; background:#f4f4f4;" id="itempop_order">
+			<input id="name" placeholder="Name" style="margin:3%;"/><input id="address" placeholder="Address" style="margin:3%;"/>
+			<p>Payment By Cash Only !</p>
+			<p id="ordernow" onclick="orderdone()" style="display:block; font-size:20px; cursor:pointer; background:#FE980F; text-align:center;">DONE</p>
+			<p id="result2" style="display:none;"></p>
+		</div>
+
 	
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -291,27 +299,19 @@
     	function popupitem(imgid){
     		document.getElementById("itempop").style.display = "block";
     		document.getElementById("itempopimg").src = "images/"+imgid+".jpg";
+    		item_id = imgid;
     	}
 
-    	function addtocart(){
+    	function ordernow(){
+    		document.getElementById("itempop_order").style.display = "block";
+    	}
+    	function orderdone(){
 			$.post("getuserdet.php", { itemid: item_id , c: 2 },
    			function(data) {
- 				$('#result1').html(data);
-   			});	
+ 				$('#result2').html(data);
+   			});
     	}
 
-    	/*function getitems(){
-    		var color = query_color[query_color.selectedIndex].value; var size = query_size[query_size.selectedIndex].value;
-			$.post("getitemdata.php", { c: 1, color: color, size: size},
-   			function(data) {
-   				var det = data.split("!");
-   				for(var i=0; i<det.length; i++){
-   					var tempitem = det[i].split("%");
-
-   				}
- 				$('#result1').html(data);
-   			});	    		
-    	}*/
     </script>
 </body>
 </html>

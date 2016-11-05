@@ -72,6 +72,8 @@
                                 </li> 
 								<li><a href="">Contact Us</a></li>
 								<li><a href="">About Us</a></li>
+								<li><a href="" id="mydetails">My Details</a></li>
+								<li><a href="design_upload.html" id="upload_design">Upload New Design</a></li>
 							</ul>
 						</div>
 					</div>
@@ -341,10 +343,12 @@
               if(!data){
               	document.getElementById("acc").style.display = "none"; document.getElementById("register").style.display = "block"; 
               	document.getElementById("login").style.display = "block"; document.getElementById("logname").style.display = "none";
+              	document.getElementById("mydetails").style.display = "none"; document.getElementById("upload_design").style.display = "none";
               }else{
-               	document.getElementById("acc").style.display = "block";
+               	document.getElementById("acc").style.display = "block"; document.getElementById("mydetails").style.display = "none";
               	document.getElementById("login").style.display = "none";  document.getElementById("register").style.display = "none"; 
-              	document.getElementById("logname").style.display = "block"; document.getElementById("logname").innerHTML(data);            	
+              	document.getElementById("logname").style.display = "block"; document.getElementById("logname").innerHTML(data); 
+              	document.getElementById("upload_design").style.display = "block";           	
               }
           	})
     	}
