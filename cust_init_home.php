@@ -42,7 +42,7 @@
 								<li id="acc"><a href="#"><i class="fa fa-user"></i> User Profile</a></li>
 								<li id="login"><a href="login/signin.php"><i class="fa fa-lock"></i> Login / Register</a></li>
 								<!--<li id="register"><a href="login/signup_artist.html"><i class="fa fa-lock"></i> Register</a></li>-->
-								<li id="logout"><a href="logout.php"><i class="fa fa-lock"></i> Logout</a></li>
+								<li id="logout"><a href="login/logout.php"><i class="fa fa-lock"></i> Logout</a></li>
 							</ul>
 						</div>
 					</div>
@@ -342,12 +342,12 @@
     		$.post("getuserdet.php", {c: 1},
             function(data){
               if(!data){ //alert(data);
-              	document.getElementById("acc").style.display = "none"; document.getElementById("register").style.display = "block"; 
-              	document.getElementById("login").style.display = "block"; document.getElementById("logout").style.display = "none"; 
+              	document.getElementById("acc").style.display = "block"; //document.getElementById("register").style.display = "block"; 
+              	document.getElementById("login").style.display = "none"; document.getElementById("logout").style.display = "block"; 
               	 
               }else{
                	document.getElementById("acc").style.display = "block"; document.getElementById("logout").style.display = "block";   
-              	document.getElementById("login").style.display = "none";  document.getElementById("register").style.display = "none";     	
+              	document.getElementById("login").style.display = "none";  //document.getElementById("register").style.display = "none";     	
               }
           	})
     	}
