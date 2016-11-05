@@ -1,6 +1,7 @@
 <?php  
 
-$c = $_REQUEST["c"]; 
+$c = $_REQUEST["c"];
+//session_start(); $_SESSION["cid"] = 1;
 
 if($c == 1){
 	returndet();
@@ -8,18 +9,16 @@ if($c == 1){
 if($c == 2){
 	ordernow();
 }
+if($c == 3){
+	temp();
+}
 
 function returndet(){
 	session_start(); 
 	if(isset($_SESSION["cid"])){
 		$cid = $_SESSION["cid"]; $cname = $_SESSION["cname"]; $cemail = $_SESSION["cemail"]; $cpassword = $_SESSION["cpassword"]; $caddress = $_SESSION["caddress"];
-		echo $cname;
-	}else{
-		if(isset($_SESSION["aid"])){
-			$aid = $_SESSION["aid"]; $aname = $_SESSION["aname"]; $aaddress = $_SESSION["aaddress"]; $apassword = $_SESSION["apassword"]; $aemail = $_SESSION["aemail"];
-			echo $aname;		
-		}
-	}
+		echo $cid;
+	}else{}
 }
 
 function ordernow(){

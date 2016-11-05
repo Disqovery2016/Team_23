@@ -32,8 +32,7 @@ function login_cust(){
 				$stmt->fetch();
 				$stmt->store_result();
 
-				echo "Login Successfull"; $_SESSION["cid"] = $cid;
-				header("Location: index.php"); 
+				session_start(); $_SESSION["cid"] = $cid;
 			}else{
 				echo "No Such User Found";
 			}
@@ -52,7 +51,7 @@ function login_artist(){
 	if(mysqli_connect_errno()){
 		die("Connection Failed".mysqli_connect_error());
 	}else{
-		if ($stmt = $mysqli->prepare("SELECT * FROM `artists` WHERE aemail=? AND apassword=?")) {
+		if ($stmt = $mysqli->prepare("SELECT cid FROM `artists` WHERE aemail=? AND apassword=?")) {
 			$stmt->bind_param("ss", $aemail , $apassword);
 			if($stmt->execute()){
 				$result = $stmt->get_result();
@@ -60,8 +59,7 @@ function login_artist(){
 				$stmt->fetch();
 				$stmt->store_result();
 
-				echo "Login Successfull"; $_SESSION["aid"] = $aid;
-				header("Location: index.php"); 
+				session_start(); $_SESSION["aid"] = $aid;
 			}else{
 				echo "No Such User Found";
 			}
@@ -121,7 +119,7 @@ function signup_artist(){
 				if ($stmt2 = $mysqli->prepare("INSERT INTO `artists` VALUES (?,?,?,?,?)")) {
 					$stmt2->bind_param("sssss", $aemail, $apass, $aname , $aaddr, $acontact);
 					if($stmt2->execute()){
-						echo "Registered Successfully. You Will Be Evaluated And Notified By Us.";
+						//echo "Registered Successfully. You Will Be Evaluated And Notified By Us.";
 					}else{
 						echo "Error Entering Details";
 					}
