@@ -5,7 +5,7 @@
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
 	<script src="jquery-3.1.1.js"></script>
 </head>
-<title>Sportivo</title>
+<title>FairArt</title>
 <style>
 .mySlides {display:none;}
 </style>
@@ -17,11 +17,11 @@
 	</div>
 	<div style="position:absolute; top:5%; left:0%; width:100%; height:95%;">
 		<div class="mySlides">
-			<img src="images/3.jpg" style="width:100%; height:100%; filter: brightness(70%);"/>
+			<img src="images/5.jpg" style="width:100%; height:100%; filter: brightness(70%);"/>
 			<!--<p style="position:absolute; top:70%; left:20%; font-size:25px; font-weight:bold; color:white;">Artifact the ..</p>-->
 		</div>
 		<div class="mySlides">
-			<img src="images/2.jpg" style="width:100%; height:100%; filter: brightness(70%);"/>
+			<img src="images/4.jpg" style="width:100%; height:100%; filter: brightness(70%);"/>
 			<!--<p style="position:absolute; top:20%; left:20%; font-size:25px; font-weight:bold; color:white;">Glory in india</p>
 			<p style="position:absolute; top:70%; left:20%; font-size:25px; font-weight:bold; color:white;">Tagline 2</p>-->
 		</div>
